@@ -1,5 +1,6 @@
 // KerjaYuk — Layout dashboard bersama (navbar + sidebar) sesuai desain
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 import Logo from './Logo';
 
 const BADGE = {
@@ -34,6 +35,7 @@ function MenuItem({ to, label, end }) {
 }
 
 export default function DashboardLayout({ roleLabel, role, nama, onLogout, children }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const inisial = (nama || 'U')
     .split(' ')
     .map((w) => w[0])
@@ -45,7 +47,20 @@ export default function DashboardLayout({ roleLabel, role, nama, onLogout, child
     <div className="w-full min-h-screen bg-slate-50 flex flex-col">
       {/* Navbar */}
       <div className="h-20 px-8 bg-white border-b border-slate-200 flex justify-between items-center">
-        <Logo />
+        <div className="flex items-center gap-3">
+          {/* Tombol hamburger — hanya tampil di layar mobile */}
+          <button
+            type="button"
+            aria-label="Buka menu"
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px] rounded-lg hover:bg-slate-100"
+          >
+            <span className="block w-5 h-[2px] bg-slate-600 rounded" />
+            <span className="block w-5 h-[2px] bg-slate-600 rounded" />
+            <span className="block w-5 h-[2px] bg-slate-600 rounded" />
+          </button>
+          <Logo />
+        </div>
         <div className="flex items-center gap-3">
           <span className="px-2.5 py-1 bg-indigo-50 rounded-md text-blue-600 text-xs font-semibold leading-4">{roleLabel}</span>
           <span className="text-slate-500 text-sm">Ruang kariermu</span>
@@ -66,7 +81,7 @@ export default function DashboardLayout({ roleLabel, role, nama, onLogout, child
 
       {/* Sidebar + Konten */}
       <div className="flex-1 flex">
-        <div className="w-60 px-5 py-7 bg-white border-r border-slate-200 flex flex-col gap-3">
+        <div className="hidden md:flex w-60 px-5 py-7 bg-white border-r border-slate-200 flex-col gap-3">
           <Logo size="h-9" text="text-xl font-bold" />
           <div className="text-slate-400 text-xs font-bold leading-4 mt-2">{roleLabel.toUpperCase()}</div>
           {role === 'PELAMAR' && (
