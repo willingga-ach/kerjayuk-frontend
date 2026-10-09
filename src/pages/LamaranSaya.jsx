@@ -67,14 +67,16 @@ export default function LamaranSaya() {
                 <div className="flex-1 text-slate-500 dark:text-slate-400 text-xs font-semibold">Lowongan</div>
                 <div className="flex-1 text-slate-500 dark:text-slate-400 text-xs font-semibold">Perusahaan</div>
                 <div className="flex-1 text-slate-500 dark:text-slate-400 text-xs font-semibold">Status</div>
-                <div className="w-24 text-slate-500 dark:text-slate-400 text-xs font-semibold">Versi</div>
+                <div className="w-32 text-slate-500 dark:text-slate-400 text-xs font-semibold">Terakhir Diubah</div>
               </div>
               {data.map((l) => (
                 <div key={l.id} className="min-h-16 px-4 py-4 border-t border-slate-200 dark:border-slate-800 flex items-center gap-3.5">
                   <div className="flex-1 text-blue-950 dark:text-slate-100 text-xs font-semibold">{l.lowongan?.judul}</div>
                   <div className="flex-1 text-blue-950 dark:text-slate-100 text-xs">{l.lowongan?.perusahaan}</div>
                   <div className="flex-1"><StatusBadge status={l.status} /></div>
-                  <div className="w-24 text-slate-400 dark:text-slate-500 text-xs">v{l.version}</div>
+                  <div className="w-32 text-slate-400 dark:text-slate-500 text-xs">
+                    {new Date(l.updated_at ?? l.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+                  </div>
                 </div>
               ))}
             </div>
