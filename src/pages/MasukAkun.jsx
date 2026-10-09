@@ -2,7 +2,34 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import Logo from '../components/Logo';
+
+// Tombol tema berdiri sendiri (pojok kanan atas) — dipakai di halaman login
+function ThemeToggle() {
+  const { dark, toggle } = useTheme();
+  return (
+    <button
+      type="button"
+      aria-label={dark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap'}
+      onClick={toggle}
+      className="w-9 h-9 flex items-center justify-center rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+    >
+      {dark ? (
+        // ikon matahari (mode gelap aktif -> tawarkan terang)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+        </svg>
+      ) : (
+        // ikon bulan (mode terang aktif -> tawarkan gelap)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+        </svg>
+      )}
+    </button>
+  );
+}
 
 export default function MasukAkun() {
   const { login } = useAuth();
@@ -29,7 +56,12 @@ export default function MasukAkun() {
   }
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-white dark:bg-slate-950 flex">
+    <div className="w-full h-screen overflow-hidden bg-white dark:bg-slate-950 flex relative">
+      {/* Toggle tema — pojok kanan atas, selalu terlihat */}
+      <div className="absolute top-4 right-4 z-20">
+        <ThemeToggle />
+      </div>
+
       {/* Kolom kiri: pesan karier — scroll sendiri bila layar pendek */}
       <div className="hidden lg:flex w-[600px] p-14 bg-indigo-50 dark:bg-slate-900 flex-col gap-9 overflow-y-auto scroll-slim">
         <Logo />
