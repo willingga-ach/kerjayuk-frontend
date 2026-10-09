@@ -96,32 +96,32 @@ export default function KandidatRecruiter() {
       onLogout={() => { logout(); navigate('/masuk'); }}
     >
       <div className="flex flex-col gap-2">
-        <div className="text-slate-500 text-xs font-medium">
+        <div className="text-slate-500 dark:text-slate-400 text-xs font-medium">
           {user?.role === 'ADMIN' ? 'RUANG ADMIN' : 'RUANG RECRUITER'}
         </div>
-        <div className="text-blue-950 text-3xl font-bold">Kandidat &amp; Status Lamaran</div>
-        <div className="text-slate-500 text-sm">
+        <div className="text-blue-950 dark:text-slate-100 text-3xl font-bold">Kandidat &amp; Status Lamaran</div>
+        <div className="text-slate-500 dark:text-slate-400 text-sm">
           Ubah status kandidat. Perubahan dilindungi Compare-and-Swap: jika recruiter lain mengubah lebih dulu, kamu akan diminta memuat ulang (HTTP 409).
         </div>
       </div>
 
       {error && (
-        <div className="p-4 bg-amber-50 rounded-lg text-amber-800 text-sm border border-amber-200">{error}</div>
+        <div className="p-4 bg-amber-50 dark:bg-amber-500/20 rounded-lg text-amber-800 dark:text-amber-300 text-sm border border-amber-200 dark:border-amber-500/40">{error}</div>
       )}
-      {loading && <div className="text-slate-500 text-sm">Memuat…</div>}
+      {loading && <div className="text-slate-500 dark:text-slate-400 text-sm">Memuat…</div>}
 
       <div className="flex flex-col gap-4">
         {!loading && data.length === 0 && (
-          <div className="p-6 bg-white rounded-xl text-slate-500 text-sm">Belum ada lamaran masuk.</div>
+          <div className="p-6 bg-white dark:bg-slate-900 rounded-xl text-slate-500 dark:text-slate-400 text-sm">Belum ada lamaran masuk.</div>
         )}
         {data.map((lam) => {
           const f = getForm(lam.id);
           return (
-            <div key={lam.id} className="p-6 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col gap-4">
+            <div key={lam.id} className="p-6 bg-white dark:bg-slate-900 rounded-xl outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 flex flex-col gap-4">
               <div className="flex justify-between items-start gap-4">
                 <div>
-                  <div className="text-blue-950 text-lg font-semibold leading-7">{lam.lowongan?.judul}</div>
-                  <div className="text-slate-500 text-xs">
+                  <div className="text-blue-950 dark:text-slate-100 text-lg font-semibold leading-7">{lam.lowongan?.judul}</div>
+                  <div className="text-slate-500 dark:text-slate-400 text-xs">
                     {lam.lowongan?.perusahaan} · v{lam.version} · {new Date(lam.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
                   </div>
                 </div>
@@ -130,11 +130,11 @@ export default function KandidatRecruiter() {
 
               <div className="flex flex-wrap items-end gap-3">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-blue-950 text-xs font-semibold">Status baru</label>
+                  <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold">Status baru</label>
                   <select
                     value={f.status}
                     onChange={(e) => setFormVal(lam.id, { status: e.target.value })}
-                    className="min-h-11 p-3 bg-white rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 text-sm text-blue-950"
+                    className="min-h-11 p-3 bg-white dark:bg-slate-900 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 text-sm text-blue-950 dark:text-slate-100"
                   >
                     <option value="">— pilih —</option>
                     {STATUS_OPSI.map((s) => (
@@ -145,14 +145,14 @@ export default function KandidatRecruiter() {
                   </select>
                 </div>
                 <div className="flex flex-col gap-1.5 flex-1 min-w-64">
-                  <label className="text-blue-950 text-xs font-semibold">
-                    Catatan {isUndoPenolakan(lam) && <span className="text-rose-600">* wajib untuk undo penolakan (AC-2)</span>}
+                  <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold">
+                    Catatan {isUndoPenolakan(lam) && <span className="text-rose-600 dark:text-rose-300">* wajib untuk undo penolakan (AC-2)</span>}
                   </label>
                   <input
                     value={f.notes}
                     onChange={(e) => setFormVal(lam.id, { notes: e.target.value })}
                     placeholder="Catatan evaluasi…"
-                    className={`min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] text-sm ${isUndoPenolakan(lam) && !f.notes.trim() ? 'outline-rose-400' : 'outline-slate-200 focus:outline-blue-600'}`}
+                    className={`min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] text-sm ${isUndoPenolakan(lam) && !f.notes.trim() ? 'outline-rose-400' : 'outline-slate-200 dark:outline-slate-700 focus:outline-blue-600'}`}
                   />
                 </div>
                 <button
@@ -164,32 +164,32 @@ export default function KandidatRecruiter() {
                 </button>
                 <button
                   onClick={() => bukaLog(lam.id)}
-                  className="px-4 py-2.5 bg-white rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 text-sm font-semibold text-blue-950 hover:bg-slate-50"
+                  className="px-4 py-2.5 bg-white dark:bg-slate-900 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 text-sm font-semibold text-blue-950 dark:text-slate-100 hover:bg-slate-50"
                 >
                   {logFor === lam.id ? 'Tutup riwayat' : 'Lihat riwayat'}
                 </button>
               </div>
 
               {f.alert && (
-                <div className={`p-3 rounded-lg text-xs ${f.alert.type === 'ok' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
+                <div className={`p-3 rounded-lg text-xs ${f.alert.type === 'ok' ? 'bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300' : 'bg-rose-50 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300'}`}>
                   {f.alert.text}
                 </div>
               )}
 
               {logFor === lam.id && (
                 <div className="overflow-x-auto w-full">
-                  <div className="min-w-[480px] rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 overflow-hidden">
-                    <div className="px-4 py-3 bg-slate-50 text-slate-500 text-xs font-semibold">
+                  <div className="min-w-[480px] rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 overflow-hidden">
+                    <div className="px-4 py-3 bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 text-xs font-semibold">
                       Riwayat perubahan status ({logs.length})
                     </div>
-                    {logs.length === 0 && <div className="px-4 py-3 text-slate-400 text-xs">Belum ada perubahan.</div>}
+                    {logs.length === 0 && <div className="px-4 py-3 text-slate-400 dark:text-slate-500 text-xs">Belum ada perubahan.</div>}
                     {logs.map((lg) => (
-                      <div key={lg.id} className="px-4 py-3 border-t border-slate-200 text-xs flex gap-4 items-center">
-                        <span className="text-slate-400 w-36 shrink-0">{new Date(lg.created_at).toLocaleString('id-ID')}</span>
-                        <span className="text-blue-950">
+                      <div key={lg.id} className="px-4 py-3 border-t border-slate-200 dark:border-slate-800 text-xs flex gap-4 items-center">
+                        <span className="text-slate-400 dark:text-slate-500 w-36 shrink-0">{new Date(lg.created_at).toLocaleString('id-ID')}</span>
+                        <span className="text-blue-950 dark:text-slate-100">
                           {lg.status_lama || '—'} → <strong>{lg.status_baru}</strong>
                         </span>
-                        {lg.notes && <span className="text-slate-500 flex-1">“{lg.notes}”</span>}
+                        {lg.notes && <span className="text-slate-500 dark:text-slate-400 flex-1">“{lg.notes}”</span>}
                       </div>
                     ))}
                   </div>

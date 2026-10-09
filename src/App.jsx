@@ -16,7 +16,7 @@ import KandidatRecruiter from './pages/KandidatRecruiter';
 function Guard({ roles, children }) {
   const { user, loading } = useAuth();
   if (loading) {
-    return <div className="min-h-screen bg-slate-50 flex justify-center items-center text-slate-500">Memuat…</div>;
+    return <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex justify-center items-center text-slate-500">Memuat…</div>;
   }
   if (!user) return <Navigate to="/masuk" replace />;
   if (roles && !roles.includes(user.role)) return <Navigate to="/" replace />;
@@ -26,7 +26,7 @@ function Guard({ roles, children }) {
 // Arahkan "/" sesuai role yang sedang login
 function Home() {
   const { user, loading } = useAuth();
-  if (loading) return <div className="min-h-screen bg-slate-50 flex justify-center items-center text-slate-500">Memuat…</div>;
+  if (loading) return <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex justify-center items-center text-slate-500">Memuat…</div>;
   if (!user) return <Navigate to="/masuk" replace />;
   if (user.role === 'RECRUITER') return <Navigate to="/recruiter" replace />;
   if (user.role === 'ADMIN') return <Navigate to="/admin" replace />;
@@ -37,7 +37,7 @@ export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="w-full min-h-screen bg-slate-50">
+        <div className="w-full min-h-screen bg-slate-50 dark:bg-slate-950">
           <Routes>
             {/* Publik */}
             <Route path="/masuk" element={<MasukAkun />} />

@@ -54,37 +54,37 @@ export default function ProfilPelamar() {
   return (
     <DashboardLayout roleLabel="Pelamar" role="PELAMAR" nama={user?.nama} onLogout={() => { logout(); navigate('/masuk'); }}>
       <div className="flex flex-col gap-2">
-        <div className="text-slate-500 text-xs font-medium">RUANG PELAMAR</div>
-        <div className="text-blue-950 text-3xl font-bold">Profil Saya</div>
-        <div className="text-slate-500 text-sm">Kelola identitas dan portofoliomu.</div>
+        <div className="text-slate-500 dark:text-slate-400 text-xs font-medium">RUANG PELAMAR</div>
+        <div className="text-blue-950 dark:text-slate-100 text-3xl font-bold">Profil Saya</div>
+        <div className="text-slate-500 dark:text-slate-400 text-sm">Kelola identitas dan portofoliomu.</div>
       </div>
 
-      <form onSubmit={simpan} className="max-w-xl p-8 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col gap-5">
+      <form onSubmit={simpan} className="max-w-xl p-8 bg-white dark:bg-slate-900 rounded-xl outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 flex flex-col gap-5">
         <div className="flex flex-col gap-1.5">
-          <label className="text-blue-950 text-xs font-semibold">Nama lengkap</label>
-          <input value={nama} onChange={(e) => setNama(e.target.value)} required className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 focus:outline-blue-600 text-sm" />
+          <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold">Nama lengkap</label>
+          <input value={nama} onChange={(e) => setNama(e.target.value)} required className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 focus:outline-blue-600 text-sm" />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label className="text-blue-950 text-xs font-semibold">Email (tidak dapat diubah)</label>
-          <input value={user?.email || ''} disabled className="min-h-11 p-3 rounded-lg bg-slate-50 outline outline-1 outline-offset-[-1px] outline-slate-200 text-sm text-slate-400" />
+          <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold">Email (tidak dapat diubah)</label>
+          <input value={user?.email || ''} disabled className="min-h-11 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/60 outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 text-sm text-slate-400 dark:text-slate-500" />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label className="text-blue-950 text-xs font-semibold">URL portofolio</label>
+          <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold">URL portofolio</label>
           <input
             value={portfolio}
             onChange={(e) => setPortfolio(e.target.value)}
             placeholder="https://github.com/username"
-            className={`min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] text-sm ${domainError ? 'outline-rose-700' : 'outline-slate-200 focus:outline-blue-600'}`}
+            className={`min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] text-sm ${domainError ? 'outline-rose-700' : 'outline-slate-200 dark:outline-slate-700 focus:outline-blue-600'}`}
           />
-          <div className="text-slate-500 text-xs">
+          <div className="text-slate-500 dark:text-slate-400 text-xs">
             Domain yang diterima: {ALLOWLIST.join(', ')} (boleh pakai www).
           </div>
-          {domainError && <div className="text-rose-700 text-xs">{domainError}</div>}
-          <div className="text-slate-400 text-xs">Pemeriksaan akhir domain dilakukan oleh server (AC-4 — anti domain spoofing &amp; SSRF).</div>
+          {domainError && <div className="text-rose-700 dark:text-rose-300 text-xs">{domainError}</div>}
+          <div className="text-slate-400 dark:text-slate-500 text-xs">Pemeriksaan akhir domain dilakukan oleh server (AC-4 — anti domain spoofing &amp; SSRF).</div>
         </div>
 
         {msg && (
-          <div className={`p-4 rounded-lg text-sm ${msg.type === 'ok' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
+          <div className={`p-4 rounded-lg text-sm ${msg.type === 'ok' ? 'bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300' : 'bg-rose-50 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300'}`}>
             {msg.text}
           </div>
         )}

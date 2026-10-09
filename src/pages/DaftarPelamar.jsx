@@ -47,40 +47,40 @@ export default function DaftarPelamar() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-slate-50 flex justify-center items-center p-6">
-      <div className="w-full max-w-md p-8 bg-white rounded-2xl outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col gap-6">
+    <div className="w-full min-h-screen bg-slate-50 dark:bg-slate-800/60 dark:bg-slate-950 flex justify-center items-center p-6">
+      <div className="w-full max-w-md p-8 bg-white dark:bg-slate-900 rounded-2xl outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 flex flex-col gap-6">
         <div className="flex flex-col gap-1">
-          <div className="text-blue-950 text-2xl font-bold">Buat akun pelamar.</div>
-          <div className="text-slate-500 text-sm">Mulai langkah kariermu di KerjaYuk.</div>
+          <div className="text-blue-950 dark:text-slate-100 text-2xl font-bold">Buat akun pelamar.</div>
+          <div className="text-slate-500 dark:text-slate-400 text-sm">Mulai langkah kariermu di KerjaYuk.</div>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-1.5">
-            <label className="text-blue-950 text-xs font-semibold">Nama lengkap</label>
-            <input required value={form.nama} onChange={set('nama')} className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 focus:outline-blue-600 text-sm" />
+            <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold">Nama lengkap</label>
+            <input required value={form.nama} onChange={set('nama')} className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 focus:outline-blue-600 text-sm" />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="text-blue-950 text-xs font-semibold">Email</label>
-            <input type="email" required value={form.email} onChange={set('email')} className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 focus:outline-blue-600 text-sm" />
+            <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold">Email</label>
+            <input type="email" required value={form.email} onChange={set('email')} className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 focus:outline-blue-600 text-sm" />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="text-blue-950 text-xs font-semibold">Kata sandi (min. 8 karakter)</label>
-            <input type="password" required minLength={8} value={form.password} onChange={set('password')} className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 focus:outline-blue-600 text-sm" />
+            <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold">Kata sandi (min. 8 karakter)</label>
+            <input type="password" required minLength={8} value={form.password} onChange={set('password')} className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 focus:outline-blue-600 text-sm" />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="text-blue-950 text-xs font-semibold">URL portofolio (opsional)</label>
+            <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold">URL portofolio (opsional)</label>
             <input
               value={form.portfolio_url}
               onChange={set('portfolio_url')}
               placeholder="https://github.com/username"
-              className={`min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] text-sm ${domainError ? 'outline-rose-700' : 'outline-slate-200 focus:outline-blue-600'}`}
+              className={`min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] text-sm ${domainError ? 'outline-rose-700' : 'outline-slate-200 dark:outline-slate-700 focus:outline-blue-600'}`}
             />
-            <div className="text-slate-500 text-xs">{ALLOWLIST_HINT}</div>
-            {domainError && <div className="text-rose-700 text-xs">{domainError}</div>}
-            <div className="text-slate-400 text-xs">Pemeriksaan akhir domain dilakukan oleh server (AC-4).</div>
+            <div className="text-slate-500 dark:text-slate-400 text-xs">{ALLOWLIST_HINT}</div>
+            {domainError && <div className="text-rose-700 dark:text-rose-300 text-xs">{domainError}</div>}
+            <div className="text-slate-400 dark:text-slate-500 text-xs">Pemeriksaan akhir domain dilakukan oleh server (AC-4).</div>
           </div>
 
-          {error && <div className="p-3 bg-rose-50 rounded-lg text-rose-700 text-xs">{error}</div>}
+          {error && <div className="p-3 bg-rose-50 dark:bg-rose-500/20 rounded-lg text-rose-700 dark:text-rose-300 text-xs">{error}</div>}
 
           <button
             type="submit"
@@ -91,7 +91,7 @@ export default function DaftarPelamar() {
           </button>
         </form>
 
-        <Link to="/masuk" className="text-blue-600 text-sm hover:underline">
+        <Link to="/masuk" className="text-blue-600 dark:text-indigo-300 text-sm hover:underline">
           Sudah punya akun? Masuk →
         </Link>
       </div>

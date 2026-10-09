@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+/* Dark mode berbasis class .dark pada <html> (bukan hanya prefers-color-scheme),
+   agar bisa ditoggle manual oleh tombol tema. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Latar html mengikuti tema agar tidak ada kilatan putih saat load */
+html {
+  background-color: #f8fafc; /* slate-50 */
+}
+html.dark {
+  background-color: #020617; /* slate-950 */
+}
+
+/* Scrollbar tipis & modern untuk area konten yang di-scroll internal */
+.scroll-slim {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(148 163 184 / 0.5) transparent;
+}
+.scroll-slim::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: rgb(148 163 184 / 0.5);
+  border-radius: 9999px;
+}
+.scroll-slim::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -29,15 +29,15 @@ export default function MasukAkun() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-white flex">
-      {/* Kolom kiri: pesan karier */}
-      <div className="hidden lg:flex w-[600px] p-14 bg-indigo-50 flex-col gap-9">
+    <div className="w-full h-screen overflow-hidden bg-white dark:bg-slate-950 flex">
+      {/* Kolom kiri: pesan karier — scroll sendiri bila layar pendek */}
+      <div className="hidden lg:flex w-[600px] p-14 bg-indigo-50 dark:bg-slate-900 flex-col gap-9 overflow-y-auto scroll-slim">
         <Logo />
         <div className="flex flex-col gap-4">
-          <div className="text-blue-950 text-4xl font-bold leading-[50px]">
+          <div className="text-blue-950 dark:text-slate-100 text-4xl font-bold leading-[50px]">
             Langkah pertamamu, peluang berikutnya.
           </div>
-          <div className="text-slate-500 leading-6">
+          <div className="text-slate-500 dark:text-slate-400 leading-6">
             Temukan magang dan pekerjaan yang memberi ruang untuk tumbuh. Mulai perjalananmu bersama KerjaYuk.
           </div>
         </div>
@@ -46,47 +46,48 @@ export default function MasukAkun() {
           alt="Suasana KerjaYuk"
           className="w-full max-w-[488px] h-auto rounded-xl shadow-lg object-cover"
         />
-        <div className="flex flex-col gap-4 text-blue-950 text-sm leading-5">
+        <div className="flex flex-col gap-4 text-blue-950 dark:text-slate-100 text-sm leading-5">
           <div>• Lowongan magang &amp; pekerjaan penuh waktu</div>
           <div>• Riwayat lamaran yang transparan</div>
           <div>• Portofolio untuk menunjukkan potensimu</div>
         </div>
-        <div className="text-slate-500 text-xs mt-auto">© 2026 KerjaYuk · Ruang bertumbuh untuk talenta muda</div>
+        <div className="text-slate-500 dark:text-slate-400 text-xs mt-auto">© 2026 KerjaYuk · Ruang bertumbuh untuk talenta muda</div>
       </div>
 
       {/* Kolom kanan: form login */}
-      <div className="flex-1 px-8 lg:px-24 py-12 flex flex-col gap-7">
+      {/* Kolom kanan: form login — scroll sendiri bila layar pendek */}
+      <div className="flex-1 px-8 lg:px-24 py-12 flex flex-col gap-7 overflow-y-auto scroll-slim">
         <div className="flex flex-col gap-2">
-          <div className="text-blue-950 text-3xl font-bold leading-9">Selamat datang kembali.</div>
-          <div className="text-slate-500 text-sm">Masuk untuk melanjutkan perjalanan kariermu.</div>
+          <div className="text-blue-950 dark:text-slate-100 text-3xl font-bold leading-9">Selamat datang kembali.</div>
+          <div className="text-slate-500 dark:text-slate-400 text-sm">Masuk untuk melanjutkan perjalanan kariermu.</div>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col gap-1.5">
-            <label className="text-blue-950 text-xs font-semibold leading-5">Alamat email</label>
+            <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold leading-5">Alamat email</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="nadia.putri@email.com"
-              className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 focus:outline-blue-600 text-sm text-blue-950"
+              className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 focus:outline-blue-600 text-sm text-blue-950 dark:text-slate-100"
             />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="text-blue-950 text-xs font-semibold leading-5">Kata sandi</label>
+            <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold leading-5">Kata sandi</label>
             <input
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 focus:outline-blue-600 text-sm text-blue-950"
+              className="min-h-11 p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 focus:outline-blue-600 text-sm text-blue-950 dark:text-slate-100"
             />
           </div>
 
           {error && (
-            <div className="p-3 bg-rose-50 rounded-lg text-rose-700 text-xs">{error}</div>
+            <div className="p-3 bg-rose-50 dark:bg-rose-500/20 rounded-lg text-rose-700 dark:text-rose-300 text-xs">{error}</div>
           )}
 
           <button
@@ -96,32 +97,32 @@ export default function MasukAkun() {
           >
             {busy ? 'Memproses…' : 'Masuk'}
           </button>
-          <div className="text-slate-500 text-xs">
+          <div className="text-slate-500 dark:text-slate-400 text-xs">
             Akses pelamar, recruiter, atau admin mengikuti peran akunmu.
           </div>
         </form>
 
-        <Link to="/daftar" className="text-blue-600 text-sm hover:underline">
+        <Link to="/daftar" className="text-blue-600 dark:text-indigo-300 text-sm hover:underline">
           Belum punya akun? Daftar sebagai pelamar →
         </Link>
 
         {/* Kartu info akun demo */}
-        <div className="p-6 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col gap-5">
+        <div className="p-6 bg-white dark:bg-slate-900 rounded-xl outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 flex flex-col gap-5">
           <div className="flex flex-col gap-1">
-            <div className="text-blue-950 text-lg font-semibold leading-7">Coba ruang recruiter</div>
-            <div className="text-slate-500 text-xs">Demo untuk proyek perkuliahan</div>
+            <div className="text-blue-950 dark:text-slate-100 text-lg font-semibold leading-7">Coba ruang recruiter</div>
+            <div className="text-slate-500 dark:text-slate-400 text-xs">Demo untuk proyek perkuliahan</div>
           </div>
-          <span className="px-2.5 py-1 bg-indigo-50 rounded-md text-blue-600 text-xs font-semibold leading-4 w-fit">
+          <span className="px-2.5 py-1 bg-indigo-50 dark:bg-indigo-500/20 rounded-md text-blue-600 dark:text-indigo-300 text-xs font-semibold leading-4 w-fit">
             Recruiter · Nusa Digital
           </span>
-          <div className="text-slate-500 text-xs">
+          <div className="text-slate-500 dark:text-slate-400 text-xs">
             Jelajahi dashboard, lowongan, dan alur seleksi. Akun demo:
-            <div className="mt-1 font-mono text-blue-950">recruiter@kerjayuk.id / pelamar@kerjayuk.id</div>
-            <div className="font-mono text-blue-950">password: password123</div>
+            <div className="mt-1 font-mono text-blue-950 dark:text-slate-100">recruiter@kerjayuk.id / pelamar@kerjayuk.id</div>
+            <div className="font-mono text-blue-950 dark:text-slate-100">password: password123</div>
           </div>
         </div>
 
-        <div className="text-slate-500 text-xs mt-auto">
+        <div className="text-slate-500 dark:text-slate-400 text-xs mt-auto">
           Dengan masuk, kamu menyetujui Ketentuan Layanan dan Kebijakan Privasi KerjaYuk.
         </div>
       </div>

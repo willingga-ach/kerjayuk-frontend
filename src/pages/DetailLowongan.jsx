@@ -38,37 +38,37 @@ export default function DetailLowongan() {
   if (!lowongan) {
     return (
       <DashboardLayout roleLabel="Pelamar" role="PELAMAR" nama={user?.nama} onLogout={() => { logout(); navigate('/masuk'); }}>
-        {result?.msg ? <div className="p-4 bg-rose-50 rounded-lg text-rose-700 text-sm">{result.msg}</div> : <div className="text-slate-500">Memuat…</div>}
+        {result?.msg ? <div className="p-4 bg-rose-50 dark:bg-rose-500/20 rounded-lg text-rose-700 dark:text-rose-300 text-sm">{result.msg}</div> : <div className="text-slate-500 dark:text-slate-400">Memuat…</div>}
       </DashboardLayout>
     );
   }
 
   return (
     <DashboardLayout roleLabel="Pelamar" role="PELAMAR" nama={user?.nama} onLogout={() => { logout(); navigate('/masuk'); }}>
-      <button onClick={() => navigate('/lowongan')} className="text-slate-500 text-sm hover:underline w-fit">
+      <button onClick={() => navigate('/lowongan')} className="text-slate-500 dark:text-slate-400 text-sm hover:underline w-fit">
         ← Kembali ke katalog
       </button>
 
-      <div className="p-8 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col gap-5">
+      <div className="p-8 bg-white dark:bg-slate-900 rounded-xl outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 flex flex-col gap-5">
         <div className="flex justify-between items-start">
           <div>
-            <div className="text-blue-950 text-3xl font-bold">{lowongan.judul}</div>
-            <div className="text-slate-500 text-sm mt-1">
+            <div className="text-blue-950 dark:text-slate-100 text-3xl font-bold">{lowongan.judul}</div>
+            <div className="text-slate-500 dark:text-slate-400 text-sm mt-1">
               {lowongan.perusahaan} · dibuka oleh {lowongan.recruiter?.nama}
             </div>
           </div>
-          <span className={`px-2.5 py-1 rounded-md text-xs font-semibold ${lowongan.is_open ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-200 text-slate-500'}`}>
+          <span className={`px-2.5 py-1 rounded-md text-xs font-semibold ${lowongan.is_open ? 'bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300' : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400'}`}>
             {lowongan.is_open ? 'Lowongan buka' : 'Lowongan ditutup'}
           </span>
         </div>
 
-        <div className="text-blue-950 text-sm whitespace-pre-wrap leading-6">{lowongan.deskripsi}</div>
-        <div className="text-slate-400 text-xs">
+        <div className="text-blue-950 dark:text-slate-100 text-sm whitespace-pre-wrap leading-6">{lowongan.deskripsi}</div>
+        <div className="text-slate-400 dark:text-slate-500 text-xs">
           Dibuat {new Date(lowongan.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })} · {lowongan.jumlah_pelamar} pelamar sudah mendaftar
         </div>
 
         {result && (
-          <div className={`p-4 rounded-lg text-sm ${result.type === 'ok' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
+          <div className={`p-4 rounded-lg text-sm ${result.type === 'ok' ? 'bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300' : 'bg-rose-50 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300'}`}>
             {result.msg}
           </div>
         )}
@@ -85,41 +85,41 @@ export default function DetailLowongan() {
       {/* Modal kirim lamaran */}
       {showModal && (
         <div className="fixed inset-0 bg-blue-950/50 z-10 flex justify-center items-center p-4">
-          <div className="w-full max-w-[640px] p-8 bg-white rounded-2xl shadow-xl flex flex-col gap-6">
+          <div className="w-full max-w-[640px] p-8 bg-white dark:bg-slate-900 rounded-2xl shadow-xl flex flex-col gap-6">
             <div className="flex justify-between items-start">
               <div>
-                <div className="text-blue-950 text-2xl font-bold leading-8">Kirim lamaran</div>
-                <div className="text-slate-500 text-xs mt-1">
+                <div className="text-blue-950 dark:text-slate-100 text-2xl font-bold leading-8">Kirim lamaran</div>
+                <div className="text-slate-500 dark:text-slate-400 text-xs mt-1">
                   {lowongan.judul} · {lowongan.perusahaan}
                 </div>
               </div>
-              <button onClick={() => setShowModal(false)} className="text-slate-500 hover:text-blue-950">✕</button>
+              <button onClick={() => setShowModal(false)} className="text-slate-500 dark:text-slate-400 hover:text-blue-950">✕</button>
             </div>
 
             <div className="flex justify-between items-center">
-              <div className="text-blue-950 text-sm font-semibold">{user?.nama}</div>
-              <span className="px-2.5 py-1 bg-indigo-50 rounded-md text-blue-600 text-xs font-semibold leading-4">Pelamar</span>
+              <div className="text-blue-950 dark:text-slate-100 text-sm font-semibold">{user?.nama}</div>
+              <span className="px-2.5 py-1 bg-indigo-50 dark:bg-indigo-500/20 rounded-md text-blue-600 dark:text-indigo-300 text-xs font-semibold leading-4">Pelamar</span>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-blue-950 text-xs font-semibold">Catatan pengantar (opsional)</label>
+              <label className="text-blue-950 dark:text-slate-100 text-xs font-semibold">Catatan pengantar (opsional)</label>
               <textarea
                 rows={4}
                 maxLength={1000}
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Ceritakan singkat kenapa kamu cocok untuk posisi ini…"
-                className="p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 focus:outline-blue-600 text-sm"
+                className="p-3 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 focus:outline-blue-600 text-sm"
               />
-              <div className="text-slate-500 text-xs">Maksimal 1.000 karakter · {notes.length}/1000</div>
+              <div className="text-slate-500 dark:text-slate-400 text-xs">Maksimal 1.000 karakter · {notes.length}/1000</div>
             </div>
 
-            <div className="p-4 bg-indigo-50 rounded-lg text-blue-950 text-xs font-semibold">
+            <div className="p-4 bg-indigo-50 dark:bg-indigo-500/20 rounded-lg text-blue-950 dark:text-slate-100 text-xs font-semibold">
               Status awal: Diproses — recruiter akan memantau perkembangan lamaranmu.
             </div>
 
             <div className="flex justify-end gap-3">
-              <button onClick={() => setShowModal(false)} className="px-4 py-2.5 bg-white rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 text-sm font-semibold text-blue-950 hover:bg-slate-50">
+              <button onClick={() => setShowModal(false)} className="px-4 py-2.5 bg-white dark:bg-slate-900 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 text-sm font-semibold text-blue-950 dark:text-slate-100 hover:bg-slate-50">
                 Batal
               </button>
               <button
