@@ -1,5 +1,6 @@
 // KerjaYuk — Layout dashboard bersama (navbar + sidebar) sesuai desain
 import { NavLink } from 'react-router-dom';
+import Logo from './Logo';
 
 const BADGE = {
   DIPROSES: 'bg-violet-100 text-purple-800',
@@ -44,15 +45,7 @@ export default function DashboardLayout({ roleLabel, role, nama, onLogout, child
     <div className="w-full min-h-screen bg-slate-50 flex flex-col">
       {/* Navbar */}
       <div className="h-20 px-8 bg-white border-b border-slate-200 flex justify-between items-center">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-blue-600 rounded-[10px] flex items-center justify-center">
-            <svg width="18" height="16" viewBox="0 0 18 16" fill="none">
-              <rect x="1" y="1" width="16" height="14" rx="2" stroke="white" strokeWidth="1.7" />
-              <path d="M5 6h8M5 9h5" stroke="white" strokeWidth="1.7" strokeLinecap="round" />
-            </svg>
-          </div>
-          <div className="text-blue-950 text-2xl font-bold">KerjaYuk</div>
-        </div>
+        <Logo />
         <div className="flex items-center gap-3">
           <span className="px-2.5 py-1 bg-indigo-50 rounded-md text-blue-600 text-xs font-semibold leading-4">{roleLabel}</span>
           <span className="text-slate-500 text-sm">Ruang kariermu</span>
@@ -74,7 +67,8 @@ export default function DashboardLayout({ roleLabel, role, nama, onLogout, child
       {/* Sidebar + Konten */}
       <div className="flex-1 flex">
         <div className="w-60 px-5 py-7 bg-white border-r border-slate-200 flex flex-col gap-3">
-          <div className="text-slate-400 text-xs font-bold leading-4">{roleLabel.toUpperCase()}</div>
+          <Logo size="h-9" text="text-xl font-bold" />
+          <div className="text-slate-400 text-xs font-bold leading-4 mt-2">{roleLabel.toUpperCase()}</div>
           {role === 'PELAMAR' && (
             <>
               <MenuItem to="/lowongan" label="Cari lowongan" />
