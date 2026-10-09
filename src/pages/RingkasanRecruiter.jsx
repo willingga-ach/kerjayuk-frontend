@@ -30,7 +30,7 @@ export default function RingkasanRecruiter() {
 
       {error && <div className="p-4 bg-rose-50 rounded-lg text-rose-700 text-sm">{error}</div>}
 
-      <div className="flex gap-3">
+      <div className="flex flex-col md:flex-row gap-4">
         {[
           { label: 'Diproses', cls: 'bg-violet-100 text-purple-800', n: jumlah.DIPROSES },
           { label: 'Diterima', cls: 'bg-emerald-50 text-emerald-700', n: jumlah.DITERIMA },
@@ -46,14 +46,18 @@ export default function RingkasanRecruiter() {
 
       <div className="p-6 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col gap-4">
         <div className="text-blue-950 text-lg font-semibold">Lamaran terbaru</div>
-        {lamaran.slice(0, 5).map((l) => (
-          <div key={l.id} className="flex items-center gap-4 border-t border-slate-100 pt-3">
-            <div className="flex-1 text-blue-950 text-sm font-semibold">{l.lowongan?.judul}</div>
-            <div className="text-slate-500 text-xs flex-1">{l.lowongan?.perusahaan}</div>
-            <StatusBadge status={l.status} />
+        <div className="overflow-x-auto w-full">
+          <div className="min-w-[420px] flex flex-col gap-4">
+            {lamaran.slice(0, 5).map((l) => (
+              <div key={l.id} className="flex items-center gap-4 border-t border-slate-100 pt-3">
+                <div className="flex-1 text-blue-950 text-sm font-semibold">{l.lowongan?.judul}</div>
+                <div className="text-slate-500 text-xs flex-1">{l.lowongan?.perusahaan}</div>
+                <StatusBadge status={l.status} />
+              </div>
+            ))}
+            {lamaran.length === 0 && !error && <div className="text-slate-400 text-sm">Belum ada lamaran masuk.</div>}
           </div>
-        ))}
-        {lamaran.length === 0 && !error && <div className="text-slate-400 text-sm">Belum ada lamaran masuk.</div>}
+        </div>
         <button onClick={() => navigate('/recruiter/lamaran')} className="text-blue-600 text-sm font-semibold hover:underline w-fit">
           Tinjau semua kandidat →
         </button>

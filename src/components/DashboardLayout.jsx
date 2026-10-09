@@ -18,11 +18,12 @@ export function StatusBadge({ status }) {
   );
 }
 
-function MenuItem({ to, label, end }) {
+function MenuItem({ to, label, end, onNavigate }) {
   return (
     <NavLink
       to={to}
       end={end}
+      onClick={onNavigate}
       className={({ isActive }) =>
         `self-stretch p-3 rounded-lg flex items-center gap-3 cursor-pointer ${
           isActive ? 'bg-indigo-50 text-blue-600 font-semibold' : 'bg-white text-slate-500 font-medium hover:bg-slate-50'
@@ -107,22 +108,22 @@ export default function DashboardLayout({ roleLabel, role, nama, onLogout, child
               <div className="text-slate-400 text-xs font-bold leading-4 mt-2">{roleLabel.toUpperCase()}</div>
               {role === 'PELAMAR' && (
                 <>
-                  <MenuItem to="/lowongan" label="Cari lowongan" />
-                  <MenuItem to="/lamaran" label="Lamaran Saya" />
-                  <MenuItem to="/profil" label="Profil Saya" />
+                  <MenuItem to="/lowongan" label="Cari lowongan" onNavigate={() => setIsMobileMenuOpen(false)} />
+                  <MenuItem to="/lamaran" label="Lamaran Saya" onNavigate={() => setIsMobileMenuOpen(false)} />
+                  <MenuItem to="/profil" label="Profil Saya" onNavigate={() => setIsMobileMenuOpen(false)} />
                 </>
               )}
               {role === 'RECRUITER' && (
                 <>
-                  <MenuItem to="/recruiter" label="Ringkasan" />
-                  <MenuItem to="/recruiter/lowongan" label="Lowongan Saya" />
-                  <MenuItem to="/recruiter/lamaran" label="Kandidat" />
+                  <MenuItem to="/recruiter" label="Ringkasan" onNavigate={() => setIsMobileMenuOpen(false)} />
+                  <MenuItem to="/recruiter/lowongan" label="Lowongan Saya" onNavigate={() => setIsMobileMenuOpen(false)} />
+                  <MenuItem to="/recruiter/lamaran" label="Kandidat" onNavigate={() => setIsMobileMenuOpen(false)} />
                 </>
               )}
               {role === 'ADMIN' && (
                 <>
-                  <MenuItem to="/admin" label="Ringkasan" />
-                  <MenuItem to="/recruiter/lamaran" label="Tinjau Lamaran" />
+                  <MenuItem to="/admin" label="Ringkasan" onNavigate={() => setIsMobileMenuOpen(false)} />
+                  <MenuItem to="/recruiter/lamaran" label="Tinjau Lamaran" onNavigate={() => setIsMobileMenuOpen(false)} />
                 </>
               )}
               <div className="h-px bg-slate-200" />

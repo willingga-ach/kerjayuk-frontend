@@ -177,20 +177,22 @@ export default function KandidatRecruiter() {
               )}
 
               {logFor === lam.id && (
-                <div className="rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 overflow-hidden">
-                  <div className="px-4 py-3 bg-slate-50 text-slate-500 text-xs font-semibold">
-                    Riwayat perubahan status ({logs.length})
-                  </div>
-                  {logs.length === 0 && <div className="px-4 py-3 text-slate-400 text-xs">Belum ada perubahan.</div>}
-                  {logs.map((lg) => (
-                    <div key={lg.id} className="px-4 py-3 border-t border-slate-200 text-xs flex gap-4 items-center">
-                      <span className="text-slate-400 w-36">{new Date(lg.created_at).toLocaleString('id-ID')}</span>
-                      <span className="text-blue-950">
-                        {lg.status_lama || '—'} → <strong>{lg.status_baru}</strong>
-                      </span>
-                      {lg.notes && <span className="text-slate-500 flex-1">“{lg.notes}”</span>}
+                <div className="overflow-x-auto w-full">
+                  <div className="min-w-[480px] rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 overflow-hidden">
+                    <div className="px-4 py-3 bg-slate-50 text-slate-500 text-xs font-semibold">
+                      Riwayat perubahan status ({logs.length})
                     </div>
-                  ))}
+                    {logs.length === 0 && <div className="px-4 py-3 text-slate-400 text-xs">Belum ada perubahan.</div>}
+                    {logs.map((lg) => (
+                      <div key={lg.id} className="px-4 py-3 border-t border-slate-200 text-xs flex gap-4 items-center">
+                        <span className="text-slate-400 w-36 shrink-0">{new Date(lg.created_at).toLocaleString('id-ID')}</span>
+                        <span className="text-blue-950">
+                          {lg.status_lama || '—'} → <strong>{lg.status_baru}</strong>
+                        </span>
+                        {lg.notes && <span className="text-slate-500 flex-1">“{lg.notes}”</span>}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

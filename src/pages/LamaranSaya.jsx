@@ -42,8 +42,8 @@ export default function LamaranSaya() {
         <div className="text-slate-500 text-sm">Setiap langkah tercatat. Pantau perkembangan lamaranmu di sini.</div>
       </div>
 
-      {/* Statistik */}
-      <div className="flex gap-3">
+      {/* Statistik: bertumpuk di mobile, menyamping di desktop */}
+      <div className="flex flex-col md:flex-row gap-4">
         {STAT_CARDS.map((s) => (
           <div key={s.key} className="flex-1 p-5 bg-white rounded-xl outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col gap-2.5">
             <span className={`px-2.5 py-1 rounded-md text-xs font-semibold leading-4 w-fit ${s.cls}`}>{s.label}</span>
@@ -61,20 +61,24 @@ export default function LamaranSaya() {
           <div className="text-slate-500 text-sm">Belum ada lamaran. Yuk mulai dari katalog lowongan!</div>
         )}
         <div className="rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 overflow-hidden">
-          <div className="px-4 py-3.5 bg-slate-50 flex gap-3.5">
-            <div className="flex-1 text-slate-500 text-xs font-semibold">Lowongan</div>
-            <div className="flex-1 text-slate-500 text-xs font-semibold">Perusahaan</div>
-            <div className="flex-1 text-slate-500 text-xs font-semibold">Status</div>
-            <div className="w-24 text-slate-500 text-xs font-semibold">Versi</div>
-          </div>
-          {data.map((l) => (
-            <div key={l.id} className="min-h-16 px-4 py-4 border-t border-slate-200 flex items-center gap-3.5">
-              <div className="flex-1 text-blue-950 text-xs font-semibold">{l.lowongan?.judul}</div>
-              <div className="flex-1 text-blue-950 text-xs">{l.lowongan?.perusahaan}</div>
-              <div className="flex-1"><StatusBadge status={l.status} /></div>
-              <div className="w-24 text-slate-400 text-xs">v{l.version}</div>
+          <div className="overflow-x-auto w-full">
+            <div className="min-w-[560px]">
+              <div className="px-4 py-3.5 bg-slate-50 flex gap-3.5">
+                <div className="flex-1 text-slate-500 text-xs font-semibold">Lowongan</div>
+                <div className="flex-1 text-slate-500 text-xs font-semibold">Perusahaan</div>
+                <div className="flex-1 text-slate-500 text-xs font-semibold">Status</div>
+                <div className="w-24 text-slate-500 text-xs font-semibold">Versi</div>
+              </div>
+              {data.map((l) => (
+                <div key={l.id} className="min-h-16 px-4 py-4 border-t border-slate-200 flex items-center gap-3.5">
+                  <div className="flex-1 text-blue-950 text-xs font-semibold">{l.lowongan?.judul}</div>
+                  <div className="flex-1 text-blue-950 text-xs">{l.lowongan?.perusahaan}</div>
+                  <div className="flex-1"><StatusBadge status={l.status} /></div>
+                  <div className="w-24 text-slate-400 text-xs">v{l.version}</div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
 
         {meta && meta.total_pages > 1 && (
