@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Logo from '../components/Logo';
 
 export default function MasukAkun() {
   const { login } = useAuth();
@@ -31,10 +32,7 @@ export default function MasukAkun() {
     <div className="w-full min-h-screen bg-white flex">
       {/* Kolom kiri: pesan karier */}
       <div className="hidden lg:flex w-[600px] p-14 bg-indigo-50 flex-col gap-9">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-blue-600 rounded-[10px]" />
-          <div className="text-blue-950 text-2xl font-bold">KerjaYuk</div>
-        </div>
+        <Logo />
         <div className="flex flex-col gap-4">
           <div className="text-blue-950 text-4xl font-bold leading-[50px]">
             Langkah pertamamu, peluang berikutnya.
@@ -43,7 +41,11 @@ export default function MasukAkun() {
             Temukan magang dan pekerjaan yang memberi ruang untuk tumbuh. Mulai perjalananmu bersama KerjaYuk.
           </div>
         </div>
-        <img className="h-80 rounded-2xl object-cover" src="https://placehold.co/488x320" alt="Ilustrasi KerjaYuk" />
+        <img
+          src="/hero-illustration.jpg"
+          alt="Suasana KerjaYuk"
+          className="w-full max-w-[488px] h-auto rounded-xl shadow-lg object-cover"
+        />
         <div className="flex flex-col gap-4 text-blue-950 text-sm leading-5">
           <div>• Lowongan magang &amp; pekerjaan penuh waktu</div>
           <div>• Riwayat lamaran yang transparan</div>
