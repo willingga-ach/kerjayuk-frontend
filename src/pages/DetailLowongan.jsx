@@ -1,7 +1,7 @@
 // KerjaYuk — Detail Lowongan + Modal Lamar (POST /api/lamaran)
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { api, ApiError } from '../lib/api';
+import { api } from '../lib/api';
 import DashboardLayout from '../components/DashboardLayout';
 import { useAuth } from '../context/AuthContext';
 

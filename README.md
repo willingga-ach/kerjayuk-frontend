@@ -1,16 +1,29 @@
-# React + Vite
+# KerjaYuk - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Antarmuka KerjaYuk menggunakan React, React Router, Vite, dan Tailwind CSS.
+Halaman aktif ada di `D:\WEB\frontend-kerjayuk\src\pages`.
 
-Currently, two official plugins are available:
+## Menjalankan
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```powershell
+Set-Location D:\WEB\frontend-kerjayuk
+npm.cmd ci
+Copy-Item .env.example .env
+npm.cmd run dev
+```
 
-## React Compiler
+Lewati penyalinan `.env` jika file tersebut sudah ada. Atur `VITE_API_URL`
+ke alamat backend, misalnya `http://localhost:3000/api`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Pemeriksaan
 
-## Expanding the Oxlint configuration
+```powershell
+Set-Location D:\WEB\frontend-kerjayuk
+npm.cmd run lint
+npm.cmd run build
+npm.cmd run preview
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Folder `dist` adalah hasil build dan dapat dibuat ulang. Konfigurasi
+`vercel.json` dipertahankan untuk routing saat deployment ke Vercel.
+Petunjuk backend dan pengumpulan tugas ada di `D:\WEB\README.md`.

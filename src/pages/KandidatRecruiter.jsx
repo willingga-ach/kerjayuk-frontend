@@ -3,7 +3,7 @@
 //       jika 409 (data diubah pihak lain), tampilkan peringatan & muat ulang.
 // AC-2: transisi DITOLAK -> DIPROSES wajib notes (server menolak 400 jika kosong).
 import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../lib/api';
 import DashboardLayout, { StatusBadge } from '../components/DashboardLayout';
 import { useAuth } from '../context/AuthContext';
@@ -13,7 +13,6 @@ const STATUS_OPSI = ['DIPROSES', 'DITERIMA', 'DITOLAK'];
 export default function KandidatRecruiter() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const [params] = useSearchParams();
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
