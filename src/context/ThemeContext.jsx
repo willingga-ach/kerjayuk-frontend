@@ -24,6 +24,7 @@ export function ThemeProvider({ children }) {
   return <ThemeContext.Provider value={{ dark, toggle }}>{children}</ThemeContext.Provider>;
 }
 
+// eslint-disable-next-line react/only-export-components
 export function useTheme() {
   return useContext(ThemeContext);
 }

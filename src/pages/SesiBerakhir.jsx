@@ -1,5 +1,6 @@
 // KerjaYuk — Halaman Sesi Berakhir (dipakai saat 401 / logout)
 import { Link } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 
 // Tombol tema berdiri sendiri (pojok kanan atas)
 function ThemeToggle() {

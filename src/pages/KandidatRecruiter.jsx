@@ -23,12 +23,11 @@ export default function KandidatRecruiter() {
   const [logs, setLogs] = useState([]);
 
   async function load() {
-    setLoading(true);
-    setError('');
     try {
       const res = await api('/lamaran?limit=50&page=1');
       setData(res.data);
       setForm({});
+      setError('');
     } catch (e) {
       setError(e.message);
     } finally {
@@ -36,7 +35,16 @@ export default function KandidatRecruiter() {
     }
   }
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => {
+    api('/lamaran?limit=50&page=1')
+      .then((res) => {
+        setData(res.data);
+        setForm({});
+        setError('');
+      })
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
+  }, []);
 
   function getForm(id) {
     return form[id] || { status: '', notes: '', busy: false, alert: null };

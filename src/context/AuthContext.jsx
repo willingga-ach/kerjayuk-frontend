@@ -17,8 +17,7 @@ export function AuthProvider({ children }) {
   // Validasi sesi tersimpan saat pertama kali dibuka
   useEffect(() => {
     if (!getToken()) {
-      setLoading(false);
-      return;
+      return; // loading sudah false sejak inisialisasi (!!getToken())
     }
     api('/auth/me')
       .then((d) => {
@@ -70,6 +69,7 @@ export function AuthProvider({ children }) {
   );
 }
 
+// eslint-disable-next-line react/only-export-components
 export function useAuth() {
   return useContext(AuthContext);
 }

@@ -21,7 +21,6 @@ export default function LamaranSaya() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
     api(`/lamaran?page=${page}&limit=10`)
       .then((res) => {
         setData(res.data);
@@ -30,6 +29,11 @@ export default function LamaranSaya() {
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
   }, [page]);
+
+  function pindahHal(p) {
+    setPage(p);
+    setLoading(true);
+  }
 
   const jumlah = { DIPROSES: 0, DITERIMA: 0, DITOLAK: 0 };
   data.forEach((l) => { jumlah[l.status] = (jumlah[l.status] || 0) + 1; });
@@ -85,9 +89,9 @@ export default function LamaranSaya() {
 
         {meta && meta.total_pages > 1 && (
           <div className="flex justify-between items-center">
-            <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page <= 1} className="px-4 py-2 rounded-lg outline outline-1 outline-slate-200 dark:outline-slate-700 text-sm font-semibold text-blue-950 dark:text-slate-100 disabled:opacity-40">Sebelumnya</button>
+            <button onClick={() => pindahHal(Math.max(page - 1, 1))} disabled={page <= 1} className="px-4 py-2 rounded-lg outline outline-1 outline-slate-200 dark:outline-slate-700 text-sm font-semibold text-blue-950 dark:text-slate-100 disabled:opacity-40">Sebelumnya</button>
             <div className="text-slate-500 dark:text-slate-400 text-xs">Halaman {meta.page} / {meta.total_pages}</div>
-            <button onClick={() => setPage((p) => Math.min(p + 1, meta.total_pages))} disabled={page >= meta.total_pages} className="px-4 py-2 rounded-lg outline outline-1 outline-slate-200 dark:outline-slate-700 text-sm font-semibold text-blue-950 dark:text-slate-100 disabled:opacity-40">Berikutnya</button>
+            <button onClick={() => pindahHal(Math.min(page + 1, meta.total_pages))} disabled={page >= meta.total_pages} className="px-4 py-2 rounded-lg outline outline-1 outline-slate-200 dark:outline-slate-700 text-sm font-semibold text-blue-950 dark:text-slate-100 disabled:opacity-40">Berikutnya</button>
           </div>
         )}
       </div>

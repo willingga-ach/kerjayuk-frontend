@@ -16,7 +16,6 @@ export default function LowonganRecruiter() {
   const [busy, setBusy] = useState(false);
 
   async function load() {
-    setLoading(true);
     try {
       const res = await api('/lowongan?limit=50&page=1');
       // tampilkan semua; milik recruiter ditandai
@@ -28,7 +27,12 @@ export default function LowonganRecruiter() {
     }
   }
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => {
+    api('/lowongan?limit=50&page=1')
+      .then((res) => setData(res.data))
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
+  }, []);
 
   async function buatLowongan(e) {
     e.preventDefault();
